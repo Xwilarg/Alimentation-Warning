@@ -15,6 +15,7 @@ int main()
                 FillRect(screen, &r, brush);
             }
         }
+        Sleep(500);
     }
     ReleaseDC(0, screen);
     delete powerStatus;
