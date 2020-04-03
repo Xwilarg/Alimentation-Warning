@@ -2,7 +2,7 @@
 
 int main()
 {
-    LPSYSTEM_POWER_STATUS powerStatus = (LPSYSTEM_POWER_STATUS)malloc(sizeof(LPSYSTEM_POWER_STATUS));
+    LPSYSTEM_POWER_STATUS powerStatus = new SYSTEM_POWER_STATUS();
     HDC screen = GetDC(0);
     HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
     RECT r { 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
@@ -17,6 +17,6 @@ int main()
         }
     }
     ReleaseDC(0, screen);
-    free(powerStatus);
+    delete powerStatus;
     return 0;
 }
