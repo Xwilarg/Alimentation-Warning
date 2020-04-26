@@ -6,6 +6,7 @@ int main()
     HDC screen = GetDC(0);
     HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
     RECT r { 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
+    bool needClean = false;
     while (true)
     {
         if (GetSystemPowerStatus(powerStatus))
@@ -13,6 +14,13 @@ int main()
             if (powerStatus->ACLineStatus == 0)
             {
                 FillRect(screen, &r, brush);
+                needClean = true;
+            }
+            else if (needClean)
+            {
+                InvalidateRect(0, &r, TRUE);
+                UpdateWindow(0);
+                needClean = false;
             }
         }
         Sleep(500);
